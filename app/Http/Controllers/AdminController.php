@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Loan;
 use App\Models\Fine;
+use App\Models\Message;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -43,7 +45,8 @@ class AdminController extends Controller
         $books = Book::all();
         $loans = Loan::where('confirm_end', true)->with('book')->get();
         $fines = Fine::all();
-        return view('admin', compact('books', 'loans', 'fines'));
+        $users = User::all();
+        return view('admin', compact('books', 'loans', 'fines', 'users'));
     }
     function destroy(Book $book)
     {
@@ -100,6 +103,15 @@ class AdminController extends Controller
     function destroy_fine(Fine $fine)
     {
         $fine->delete();
+        return redirect('/admin');
+    }
+    function send_message(Request $request)
+    {
+        $message = new Message();
+        $message->user_id = $request->user;
+        $message->text = $request->message;
+
+        $message->save();
         return redirect('/admin');
     }
 }

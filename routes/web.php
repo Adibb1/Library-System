@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\LoanController;
 use App\Http\Controllers\FineController;
+use App\Http\Controllers\MessageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\isAdmin;
 
@@ -27,6 +28,10 @@ Route::get('/loans', function () {
 Route::get('/fines', function () {
     return view('fines');
 })->middleware(['auth', 'verified'])->name('fines');
+
+Route::get('/message', function () {
+    return view('message');
+})->middleware(['auth', 'verified'])->name('message');
 
 Route::get('/admin', function () {
     return view('admin');
@@ -56,9 +61,13 @@ Route::post('/complete_loan/{loan}', [LoanController::class, 'confirm_end']); //
 Route::delete('/confirm_loan_admin/{loan}/{bookid}', [AdminController::class, 'confirm_loan_admin']);
 
 //FINES
-Route::get('fines', [FineController::class, 'index'])->name('fines');
-Route::patch('fines/{fine}/pay', [FineController::class, 'pay'])->name('fines.pay');
+Route::get('/fines', [FineController::class, 'index'])->name('fines');
+Route::patch('/fines/{fine}/pay', [FineController::class, 'pay'])->name('fines.pay');
 Route::delete('/delete_fines/{fine}', [AdminController::class, 'destroy_fine']);
 
+//MESSAGE
+Route::post('/add_message', [AdminController::class, 'send_message']);
+Route::get('/message', [MessageController::class, 'index'])->name('message');
+Route::post('/read_message/{id}', [MessageController::class, 'read_message']);
 
 require __DIR__ . '/auth.php';
