@@ -8,10 +8,7 @@ export default {
         "./storage/framework/views/*.php",
         "./resources/views/**/*.blade.php",
     ],
-
-    // Remove or set darkMode to false
-    darkMode: false,
-
+    darkMode: "false", // or 'media' or 'class' or false
     theme: {
         extend: {
             fontFamily: {
@@ -19,6 +16,5 @@ export default {
             },
         },
     },
-
     plugins: [forms],
 };

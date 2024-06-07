@@ -1,14 +1,14 @@
 <x-app-layout> <!--styling-->
     <x-slot name="header"> <!--HEADER-->
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 text-gray-200 leading-tight">
             {{ __('Home') }}
         </h2>
     </x-slot>
 
     <div class="py-12">@foreach ($books as $book)
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-gray-100 dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg flex flex-wrap ">
-                <div class="p-6 text-gray-900 dark:text-gray-100 ">
+            <div class="bg-gray-100 bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg flex flex-wrap ">
+                <div class="p-6 text-white ">
                     <h4>{{$book->title}}</h4>
                     <div class="flex flex-col gap-3">
                         <p class="bg-red-600 h-[100px] w-[100px]"><img class="h-[100px] w-[100px]" src="{{$book->picture}}"></p>

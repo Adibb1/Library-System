@@ -19,11 +19,7 @@ class UpdateFines extends Command
 
     public function handle()
     {
-        $overdueLoans = Loan::where('return_date', '<', Carbon::today())
-            ->whereDoesntHave('fine', function ($query) {
-                $query->where('paid', false);
-            })
-            ->get();
+        $overdueLoans = Loan::where('due_date', '<', Carbon::today())->get();
 
         foreach ($overdueLoans as $loan) {
             Fine::updateOrCreate(

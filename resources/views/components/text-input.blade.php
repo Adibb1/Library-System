@@ -1,3 +1,13 @@
 @props(['disabled' => false])
 
-<input {{ $disabled ? 'disabled' : '' }} {!! $attributes->merge(['class' => 'border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm']) !!}>
+<input {{ $disabled ? 'disabled' : '' }} {!! $attributes->merge(['class' => 'border-gray-300 bg-[#CB997E] text-black focus:border-black focus:bg-[#DDBEA9] focus:ring-black rounded-md shadow-sm']) !!}>
+
+<style>
+    /* Style for autofilled input */
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus {
+        background-color: #CB997E !important;
+        -webkit-box-shadow: 0 0 0px 1000px #CB997E inset !important;
+    }
+</style>

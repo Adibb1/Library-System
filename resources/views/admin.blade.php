@@ -1,43 +1,43 @@
 <x-app-layout> <!--styling-->
     <x-slot name="header"> <!--HEADER-->
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 text-gray-200 leading-tight">
             {{ __('Admin') }}
         </h2>
     </x-slot>
 
     <div class="py-7">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-gray-800 dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-100 dark:text-gray-100 flex flex-col items-center transition-all">
+            <div class="bg-gray-800 bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-100 text-gray-100 flex flex-col items-center transition-all">
                     <button class="flex items-center w-full text-center" onclick="expandAddBooks()">ADD BOOKS</button>
                     <form id="formAdd" method="POST" action="/books" enctype="multipart/form-data" class="w-100 max-w-sm mx-auto h-0 opacity-0 transition-all">
                         @csrf
                         <div class="mb-5">
-                            <label for="Title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
-                            <input type="text" name="Title" class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Title" required />
+                            <label for="Title" class="block mb-2 text-sm font-medium text-gray-900 text-white">Title</label>
+                            <input type="text" name="Title" class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="Title" required />
                         </div>
                         <div class="mb-5">
-                            <label for="Author" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Author</label>
-                            <input type="text" name="Author" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Author" required />
+                            <label for="Author" class="block mb-2 text-sm font-medium text-gray-900 text-white">Author</label>
+                            <input type="text" name="Author" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="Author" required />
                         </div>
                         <div class="mb-5">
-                            <label for="ISBN" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ISBN</label>
-                            <input type="text" name="ISBN" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Book Number" required />
+                            <label for="ISBN" class="block mb-2 text-sm font-medium text-gray-900 text-white">ISBN</label>
+                            <input type="text" name="ISBN" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="Book Number" required />
                         </div>
                         <div class="mb-5">
-                            <label for="Description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                            <input type="text" name="Description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Description" required />
+                            <label for="Description" class="block mb-2 text-sm font-medium text-gray-900 text-white">Description</label>
+                            <input type="text" name="Description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="Description" required />
                         </div>
                         <div class="mb-5">
-                            <label for="Publish" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Publish Date</label>
-                            <input type="date" name="Publish" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Publish Date" required />
+                            <label for="Publish" class="block mb-2 text-sm font-medium text-gray-900 text-white">Publish Date</label>
+                            <input type="date" name="Publish" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="Publish Date" required />
                         </div>
                         <div class="mb-5">
-                            <label for="Ammount" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ammount</label>
-                            <input type="number" name="Ammount" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ammount" required />
+                            <label for="Ammount" class="block mb-2 text-sm font-medium text-gray-900 text-white">Ammount</label>
+                            <input type="number" name="Ammount" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="Ammount" required />
                         </div>
                         <div class="mb-5">
-                            <label for="Category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
+                            <label for="Category" class="block mb-2 text-sm font-medium text-gray-900 text-white">Category</label>
                             <select class="text-black" name="Category" id="Category">
                                 <option value="7" disable>Category</option><!--Others-->
                                 <option value="2">Fiction</option>
@@ -48,10 +48,10 @@
                             </select>
                         </div>
                         <div class="mb-5">
-                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="picture">Picture</label>
-                            <input class="my-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" name="picture" type="file" required>
+                            <label class="block mb-2 text-sm font-medium text-gray-900 text-white" for="picture">Picture</label>
+                            <input class="my-2.5 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 text-gray-400 focus:outline-none bg-gray-700 border-gray-600 placeholder-gray-400" name="picture" type="file" required>
                         </div>
-                        <button class="text-black bg-gray-100 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                        <button class="text-black bg-gray-100 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800">Submit</button>
                     </form>
                 </div>
             </div>
@@ -60,14 +60,14 @@
 
     <div class="py-7">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-gray-100 dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100 flex flex-col items-center transition-all">
+            <div class="bg-gray-100 bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 text-gray-100 flex flex-col items-center transition-all">
                     <button class="flex items-center w-full text-center" onclick="expandIndexBooks()">VIEW BOOKS</button>
                     <div id="index" class="w-100 max-w-sm mx-auto h-0 opacity-0 transition-all">
                         @foreach ($books as $book)
                         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                            <div class="bg-gray-100 dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg flex flex-wrap ">
-                                <div class="p-6 text-gray-900 dark:text-gray-100 ">
+                            <div class="bg-gray-100 bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg flex flex-wrap ">
+                                <div class="p-6 text-gray-900 text-gray-100 ">
                                     <h4>{{$book->title}}</h4>
                                     <div class="flex flex-col gap-3">
                                         <a>{{$book->id}}</a>
@@ -103,8 +103,8 @@
 
     <div class="py-7">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-gray-100 dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100 flex flex-col items-center transition-all">
+            <div class="bg-gray-100 bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 text-gray-100 flex flex-col items-center transition-all">
                     <button class="flex items-center w-full text-center" onclick="expandConfirmLoan()">VIEW NEED CONFIRM LOANS</button>
                     <div id="confirm_loan" class="w-100 max-w-sm mx-auto h-0 opacity-0 transition-all">
                         @foreach ($loans as $loan)
@@ -131,8 +131,8 @@
     </div>
     <div class="py-7">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-gray-100 dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100 flex flex-col items-center transition-all">
+            <div class="bg-gray-100 bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 text-gray-100 flex flex-col items-center transition-all">
                     <button class="flex items-center w-full text-center" onclick="expandFines()">VIEW ALL FINES</button>
                     <div id="fines" class="w-100 max-w-sm mx-auto h-0 opacity-0 transition-all">
                         @foreach ($fines as $fine)
@@ -156,13 +156,13 @@
     </div>
     <div class="py-7">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-gray-100 dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100 flex flex-col items-center transition-all">
+            <div class="bg-gray-100 bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 text-gray-100 flex flex-col items-center transition-all">
                     <button class="flex items-center w-full text-center" onclick="expandMessage()">VIEW ADD MESSAGE</button>
                     <form id="formMessage" method="POST" action="/add_message" enctype="multipart/form-data" class="w-100 max-w-sm mx-auto h-0 opacity-0 transition-all">
                         @csrf
                         <div class="mb-5">
-                            <label for="user" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
+                            <label for="user" class="block mb-2 text-sm font-medium text-gray-900 text-white">Username</label>
                             <select class="text-black" name="user" id="user">
                                 @foreach ($users as $user)
                                 <option value="{{$user->id}}">{{$user->name}}</option>
@@ -170,10 +170,10 @@
                             </select>
                         </div>
                         <div class="mb-5">
-                            <label for="Title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Message</label>
-                            <input type="text" name="message" class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Message you want to send" required />
+                            <label for="Title" class="block mb-2 text-sm font-medium text-gray-900 text-white">Message</label>
+                            <input type="text" name="message" class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="Message you want to send" required />
                         </div>
-                        <button class="text-black bg-gray-100 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                        <button class="text-black bg-gray-100 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800">Submit</button>
                     </form>
                 </div>
             </div>
