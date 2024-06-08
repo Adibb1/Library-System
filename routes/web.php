@@ -6,10 +6,14 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\LoanController;
 use App\Http\Controllers\FineController;
 use App\Http\Controllers\MessageController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\isAdmin;
 
 Route::get('/', function () {
+    if (Auth::check()) {
+        return redirect('/home');
+    }
     return view('auth.login');
 });
 

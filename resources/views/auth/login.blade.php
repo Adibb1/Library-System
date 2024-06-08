@@ -16,9 +16,13 @@
 
 
         <!-- Right Section -->
-        <div class="w-1/4 bg-[#FFE8D6] rounded-lg">
+        <div class="w-1/2 bg-[#FFE8D6] rounded-lg flex flex-col justify-center items-center">
+            <a href="/">
+                <img class="w-[100px]" src="{{ asset('images/book-icon.png') }}" alt="Book Icon">
+                <p class="text-center text-lg mt-2">Adib Library</p>
+            </a>
             <!-- Login Form -->
-            <form method="POST" action="{{ route('login') }}" class="m-4">
+            <form method="POST" action="{{ route('login') }}" class="w-1/2 m-4">
                 @csrf
 
                 <!-- Email Address -->
@@ -43,7 +47,7 @@
                     </label>
                 </div>
 
-                <div class="flex items-center justify-end mt-4">
+                <div class="flex items-center justify-center mt-4">
                     @if (Route::has('password.request'))
                     <a class="underline text-sm text-gray-600 text-gray-400 hover:text-gray-900 hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 focus:ring-offset-gray-800" href="{{ route('password.request') }}">
                         {{ __('Forgot your password?') }}

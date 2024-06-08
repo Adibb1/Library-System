@@ -16,9 +16,13 @@
 
 
         <!-- Right Section -->
-        <div class="w-1/4 bg-[#FFE8D6] rounded-lg">
+        <div class="w-1/2 bg-[#FFE8D6] rounded-lg flex flex-col justify-center items-center ">
+            <a href="/">
+                <img class="w-[100px]" src="{{ asset('images/book-icon.png') }}" alt="Book Icon">
+                <p class="text-center text-lg mt-2">Adib Library</p>
+            </a>
             <!-- Login Form -->
-            <form method="POST" action="{{ route('register') }}" class="m-4">
+            <form method="POST" action="{{ route('register') }}" class="w-1/2 m-4">
                 @csrf
 
                 <!-- Name -->
@@ -53,7 +57,7 @@
                     <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                 </div>
 
-                <div class="flex items-center justify-end mt-4">
+                <div class="flex items-center justify-center mt-4">
                     <x-primary-button class="ms-4">
                         {{ ('Register') }}
                     </x-primary-button>
