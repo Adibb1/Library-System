@@ -16,23 +16,23 @@
                         <p class="text-sm text-gray-300">{{$book->author}}</p>
                     </div>
                     <div class="card-details mt-4 overflow-hidden transition-all duration-500 hidden flex flex-col">
-                        <div class="border-2 rounded-lg mt-2 p-3  border-[#DDBEA9]">
-                            <p class="">Description:</p>
+                        <div class="border-2 rounded-lg mt-2 p-3 border-[#DDBEA9]">
+                            <p class="font-semibold">Description:</p>
                             <p class="mt-2">{{$book->description}}</p>
                         </div>
-                        <div class="border-2  rounded-lg mt-2 p-3 border-[#DDBEA9]">
-                            <p class="">ISBN:</p>
+                        <div class="border-2 rounded-lg mt-2 p-3 border-[#DDBEA9]">
+                            <p class="font-semibold">ISBN:</p>
                             <p class="mt-2">{{$book->ISBN}}</p>
                         </div>
-                        <div class="border-2  rounded-lg mt-2 p-3 border-[#DDBEA9]">
-                            <p class="">Amount Left:</p>
+                        <div class="border-2 rounded-lg mt-2 p-3 border-[#DDBEA9]">
+                            <p class="font-semibold">Amount Left:</p>
                             <p class="mt-2">{{$book->ammount}}</p>
                         </div>
 
                         @if (auth()->check() && !auth()->user()->isAdmin)
                         <form method="get" action="/viewloan/{{$book->id}}">
                             @csrf
-                            <button class="mt-4 bg-green-600 px-4 py-2 rounded">Loan</button>
+                            <button class="mt-4 bg-green-600 px-4 py-2 rounded hover:bg-green-500 transition-colors">Loan</button>
                         </form>
                         @endif
                     </div>

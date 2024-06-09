@@ -12,7 +12,7 @@ use App\Http\Middleware\isAdmin;
 
 Route::get('/', function () {
     if (Auth::check()) {
-        return redirect('/home');
+        return redirect('/dashboard');
     }
     return view('auth.login');
 });

@@ -8,20 +8,19 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            Unread Message :
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             @if ($URmessages->isEmpty())
-            <div class="bg-gray-100 bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg flex flex-wrap mb-2">
-                <div class="p-6 text-gray-900 text-gray-100 cursor-not-allowed">
-                    <p>All message read</p>
-                </div>
+            <div class="bg-[#A5A58D] overflow-hidden shadow-lg sm:rounded-lg flex items-center justify-between p-6 mb-4">
+                <p class="text-white">All messages read</p>
             </div>
             @else
             @foreach ($URmessages as $URmessage)
-            <div class="bg-gray-100 bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg flex flex-wrap">
-                <div class="p-6 text-gray-900 text-gray-100 cursor-pointer" onclick="readMessage('{{$URmessage->id}}')">
-                    <p>{{ $URmessage->text }}</p>
-                    <form id="read-{{ $URmessage->id }}" action="/read_message/{{$URmessage->id}}" method="post">
+            <div class="bg-[#3B3F2F] overflow-hidden shadow-lg sm:rounded-lg flex items-center justify-between p-6 mb-4 transition-transform transform hover:scale-105 hover:shadow-2xl cursor-pointer" onclick="readMessage('{{ $URmessage->id }}')">
+                <div>
+                    <p class="text-white font-semibold">{{ $URmessage->text }}</p>
+                </div>
+                <div class="text-sm text-gray-400">
+                    <form id="read-{{ $URmessage->id }}" action="/read_message/{{ $URmessage->id }}" method="post">
                         @csrf
                     </form>
                 </div>
@@ -29,14 +28,9 @@
             @endforeach
             @endif
 
-
-            <br>
-            Read Message :
             @foreach ($Rmessages as $Rmessage)
-            <div class="bg-gray-100 bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg flex flex-wrap mb-2">
-                <div class="p-6 text-gray-900 text-gray-100">
-                    <p>{{ $Rmessage->text }}</p>
-                </div>
+            <div class="bg-[#6B705C] overflow-hidden shadow-lg sm:rounded-lg flex items-center justify-between p-6 mb-4">
+                <p class="text-white">{{ $Rmessage->text }}</p>
             </div>
             @endforeach
         </div>

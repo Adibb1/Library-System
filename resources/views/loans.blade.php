@@ -1,45 +1,50 @@
-<x-app-layout> <!--styling-->
-    <x-slot name="header"> <!--HEADER-->
+@php
+use Carbon\Carbon;
+@endphp
+
+<x-app-layout> <!-- Styling -->
+    <x-slot name="header"> <!-- HEADER -->
         <h2 class="font-semibold text-xl text-gray-800 text-gray-200 leading-tight">
-            {{ __('Home') }}
+            {{ __('Loans') }}
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-gray-100 bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 text-gray-100">
+            <div class="bg-[#6B705C] overflow-hidden shadow-lg sm:rounded-lg mb-6">
+                <div class="p-6 text-white">
                     {{ __("Your loans") }}
                 </div>
             </div>
         </div>
-    </div>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             @foreach ($loans as $loan)
-            <div class="bg-gray-100 bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 text-gray-100">
-                    <p>name: {{$loan->name}}</p>
-                    <p>book id: {{$loan->book_id}}</p>
-                    <p>user id: {{$loan->user_id}}</p>
-                    <p>loan date: {{$loan->loan_date}}</p>
-                    <p>return date: {{$loan->due_date}}</p>
-                    <div class="bg-gray-700 flex flex-col">
-                        <p class="bg-red-600 h-[100px] w-[100px]"><img class="h-[100px] w-[100px]" src="{{$loan->book->picture}}"></p>
-                        <p>author: {{$loan->book->author}}</p>
-                        <p>desc: {{$loan->book->description}}</p>
-                        <p>book num: {{$loan->book->ISBN}}</p>
-                        <p>ammount left: {{$loan->book->ammount}}</p>
+            <div class="bg-[#6B705C] overflow-hidden shadow-lg sm:rounded-lg transition-transform transform hover:scale-105 hover:shadow-2xl">
+                <div class="p-6 text-white">
+                    <p class="text-lg font-semibold">Name: {{$loan->name}}</p>
+                    <p>Book Title: {{$loan->book->title}}</p>
+                    <p>Username: {{$loan->user->name}}</p>
+                    <p>Loan Date: {{ Carbon::parse($loan->loan_date)->format('j F Y') }}</p>
+                    <p>Return Date: {{ Carbon::parse($loan->due_date)->format('j F Y') }}</p>
+                    <div class="bg-[#A5A58D] p-4 rounded-lg flex flex-col mt-4 space-y-2">
+                        <div class="flex items-center space-x-4">
+                            <img class="h-[100px] w-[100px] object-cover rounded-md" src="{{$loan->book->picture}}" alt="Book Image">
+                            <div class="text-white space-y-1">
+                                <p>Author: {{$loan->book->author}}</p>
+                                <p>Description: {{$loan->book->description}}</p>
+                                <p>ISBN: {{$loan->book->ISBN}}</p>
+                                <p>Amount Left: {{$loan->book->ammount}}</p>
+                            </div>
+                        </div>
                         @if ($loan->confirm_end == False)
-                        <form action="complete_loan/{{$loan->id}}" method="post">
+                        <form action="complete_loan/{{$loan->id}}" method="post" class="mt-4">
                             @csrf
-                            <button class="bg-green-600">complete loan</button>
+                            <button class="bg-green-600 p-2 rounded-lg transition-colors hover:bg-green-500">Complete Loan</button>
                         </form>
                         @else
-                        <p class="bg-yellow-600">WAITING FOR COFRIMATION</p>
+                        <p class="bg-yellow-600 p-2 rounded-lg text-center">WAITING FOR CONFIRMATION</p>
                         @endif
                     </div>
-
                 </div>
             </div>
             @endforeach
