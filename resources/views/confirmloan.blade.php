@@ -18,7 +18,9 @@ use Carbon\Carbon;
                         <p><span class="font-semibold">Author:</span> {{$book->author}}</p>
                         <p><span class="font-semibold">Description:</span> {{$book->description}}</p>
                         <p><span class="font-semibold">Book Number (ISBN):</span> {{$book->ISBN}}</p>
-                        <p><span class="font-semibold">Amount Left:</span> {{$book->ammount}}</p>
+                        <p><span class="font-semibold">Category:</span>{{$book->category->name}}</p>
+                        <p><span class="font-semibold">Language:</span>{{$book->language->name}}</p>
+                        <p><span class="font-semibold">Price:</span> RM {{$book->price}}</p>
                     </div>
                 </div>
             </div>
@@ -26,50 +28,10 @@ use Carbon\Carbon;
                 @csrf
                 <div class="flex flex-col text-gray-800">
                     <label class="mb-2" for="name">Loaner Name</label>
-                    <input class="p-2 rounded-lg" type="text" name="name" id="name" placeholder="Name">
+                    <input class="p-2 rounded-lg" type="text" name="name" id="name" placeholder="Name" required>
                 </div>
-                <div class="flex flex-col text-gray-800">
-                    <label class="mb-2" for="date_loan_display">Loan Date (Today)</label>
-                    <input class="p-2 rounded-lg" type="text" name="date_loan_display" id="date_loan_display" disabled>
-                    <input type="hidden" name="date_loan" id="date_loan">
-                </div>
-                <div class="flex flex-col text-gray-800">
-                    <label class="mb-2" for="date_return_display">Return Date (1 week)</label>
-                    <input class="p-2 rounded-lg" type="text" name="date_return_display" id="date_return_display" disabled>
-                    <input type="hidden" name="date_return" id="date_return">
-                </div>
-                <button class="bg-green-600 text-white py-2 px-4 rounded-lg transition-colors hover:bg-green-500">Confirm Loan</button>
+                <button class="bg-green-600 text-white py-2 px-4 rounded-lg transition-colors hover:bg-green-500">Confirm Loan & Pay</button>
             </form>
         </div>
     </div>
 </x-app-layout>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var dateLoan = document.getElementById('date_loan');
-        var dateLoanDisplay = document.getElementById('date_loan_display');
-        var dateReturn = document.getElementById('date_return');
-        var dateReturnDisplay = document.getElementById('date_return_display');
-
-        var today = new Date();
-        var day = String(today.getDate()).padStart(2, '0');
-        var month = String(today.getMonth() + 1).padStart(2, '0'); // January is 0
-        var year = today.getFullYear();
-        var currentDate = day + '/' + month + '/' + year;
-
-        // Set dateLoan values
-        dateLoanDisplay.value = currentDate;
-        dateLoan.value = year + '-' + month + '-' + day;
-
-        // Calculate 7 days ahead
-        var futureDate = new Date();
-        futureDate.setDate(today.getDate() + 7);
-        var futureDay = String(futureDate.getDate()).padStart(2, '0');
-        var futureMonth = String(futureDate.getMonth() + 1).padStart(2, '0'); // January is 0
-        var futureYear = futureDate.getFullYear();
-        var futureDateString = futureDay + '/' + futureMonth + '/' + futureYear;
-
-        // Set dateReturn values
-        dateReturnDisplay.value = futureDateString;
-        dateReturn.value = futureYear + '-' + futureMonth + '-' + futureDay;
-    });
-</script>

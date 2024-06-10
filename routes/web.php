@@ -56,18 +56,12 @@ Route::patch('/edit/{book}', [AdminController::class, 'update']);
 
 //BOOK
 Route::get('/home', [BookController::class, 'index'])->middleware(['auth', 'verified'])->name('home');
+Route::get('/books', [BookController::class, 'index'])->name('books.index');
 Route::get('/viewloan/{id}', [BookController::class, 'showLoanPage']);
 
 //LOANS
 Route::post('/makeloan', [LoanController::class, 'create']);
 Route::get('/loans', [LoanController::class, 'index'])->middleware(['auth', 'verified'])->name('loans');
-Route::post('/complete_loan/{loan}', [LoanController::class, 'confirm_end']); //anything to put (accidentally put delete method)
-Route::delete('/confirm_loan_admin/{loan}/{bookid}', [AdminController::class, 'confirm_loan_admin']);
-
-//FINES
-Route::get('/fines', [FineController::class, 'index'])->name('fines');
-Route::patch('/fines/{fine}/pay', [FineController::class, 'pay'])->name('fines.pay');
-Route::delete('/delete_fines/{fine}', [AdminController::class, 'destroy_fine']);
 
 //MESSAGE
 Route::post('/add_message', [AdminController::class, 'send_message']);

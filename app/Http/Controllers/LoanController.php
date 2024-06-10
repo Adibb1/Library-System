@@ -3,43 +3,35 @@
 namespace App\Http\Controllers;
 
 use App\Models\Loan;
-use App\Models\Book;
+use App\Models\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
 class LoanController extends Controller
 {
-    function create(Request $request, Book $book)
+    function create(Request $request)
     {
         $loans = new Loan();
+        $messages = new Message();
         $loans->name = $request->name;
-        $loans->loan_date = $request->date_loan;
-        $loans->due_date = $request->date_return;
+
+        $messages->user_id = Auth::id();
+        $messages->text = 'Thanks for renting our books !';
+        $messages->date = now();
 
         $loans->user_id = Auth::id();
         $loans->book_id = $_GET['bookid'];
+        $loans->loan_date = now();
 
+        $messages->save();
         $loans->save();
-
-        $book = Book::find($_GET['bookid']);
-        if ($book) {
-            $book->increment('loan');
-            $book->decrement('ammount');
-            $book->save();
-        }
 
         return redirect('/loans');
     }
     function index()
     {
-        $loans = Loan::with('book')->where('user_id', Auth::id())->get();
+        $loans = Loan::with('book')->where('user_id', Auth::id())->get()->reverse();
         return view('loans', compact('loans'));
-    }
-    function confirm_end(Loan $loan)
-    {
-        $loan->confirm_end = True;
-        $loan->save();
-        return redirect('/loans');
     }
 }

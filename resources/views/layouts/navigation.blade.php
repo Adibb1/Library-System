@@ -18,7 +18,7 @@
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
-                        {{ __('Home') }}
+                        {{ __('Library') }}
                     </x-nav-link>
                 </div>
                 <!-- If Admin -->
@@ -32,12 +32,7 @@
                 <!-- If Costumer -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('loans')" :active="request()->routeIs('loans')">
-                        {{ __('Loans') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('fines')" :active="request()->routeIs('fines')">
-                        {{ __('Fines') }}
+                        {{ __('Books') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
@@ -102,7 +97,7 @@
         </div>
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
-                {{ __('Home') }}
+                {{ __('Library') }}
             </x-responsive-nav-link>
         </div>
         <!-- If Admin -->
@@ -117,11 +112,6 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('loans')" :active="request()->routeIs('loans')">
                 {{ __('Loans') }}
-            </x-responsive-nav-link>
-        </div>
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('fines')" :active="request()->routeIs('fines')">
-                {{ __('Fines') }}
             </x-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">

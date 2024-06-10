@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Loan;
-use App\Models\Fine;
 use App\Models\Message;
 use App\Models\User;
+use App\Models\Category;
+use Carbon\Language;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -20,9 +21,10 @@ class AdminController extends Controller
         $books->author = $request->Author;
         $books->ISBN = $request->ISBN;
         $books->description = $request->Description;
-        $books->published_date = $request->Publish;
-        $books->ammount = $request->Ammount;
         $books->category_id = $request->Category;
+        $books->price = $request->Price;
+        $books->language_id = $request->Language;
+        // dd($books);
 
         $request->validate([
             'picture' => 'required|image|max:10240'
@@ -36,17 +38,17 @@ class AdminController extends Controller
 
         $books->picture = $asset_url;
 
-
         $books->save();
         return redirect('/admin');
     }
     function index()
     {
         $books = Book::all();
-        $loans = Loan::where('confirm_end', true)->with('book')->get();
-        $fines = Fine::all();
+        $loans = Loan::all();
         $users = User::all();
-        return view('admin', compact('books', 'loans', 'fines', 'users'));
+        $languages = Language::all();
+        $categories = Category::all();
+        return view('admin', compact('books', 'loans', 'users', 'categories', 'languages'));
     }
     function destroy(Book $book)
     {
@@ -59,9 +61,7 @@ class AdminController extends Controller
         $book->author = $request->Author;
         $book->ISBN = $request->ISBN;
         $book->description = $request->Description;
-        $book->published_date = $request->Publish;
-        $book->ammount = $request->Ammount;
-        $book->category_id = $request->Category;
+        $book->price = $request->Price;
 
         // Handle pictuer
         if ($request->hasFile('picture')) {
@@ -88,22 +88,6 @@ class AdminController extends Controller
 
         // Redirect with success message
         return redirect('/admin')->with('success', 'Book updated successfully');
-    }
-    function confirm_loan_admin(Loan $loan)
-    {
-        $loan->delete();
-        $book = Book::find($_GET['bookid']);
-        if ($book) {
-            $book->increment('loan');
-            $book->decrement('ammount');
-            $book->save();
-        }
-        return redirect('/admin');
-    }
-    function destroy_fine(Fine $fine)
-    {
-        $fine->delete();
-        return redirect('/admin');
     }
     function send_message(Request $request)
     {

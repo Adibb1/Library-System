@@ -13,9 +13,8 @@ class MessageController extends Controller
 {
     function index()
     {
-        $URmessages = Message::where('user_id', Auth::id())->where('read', 0)->get();
-        $Rmessages = Message::where('user_id', Auth::id())->where('read', 1)->get();
-        return view('/message', compact('URmessages', 'Rmessages'));
+        $messages = Message::all();
+        return view('/message', compact('messages'));
     }
     function read_message(Request $request, $id)
     {
