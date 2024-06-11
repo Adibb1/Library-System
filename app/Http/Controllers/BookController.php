@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Loan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
@@ -42,7 +44,8 @@ class BookController extends Controller
     }
     function showLoanPage($id)
     {
-        $book = Book::findOrFail($id);
-        return view('confirmloan', compact('book'));
+        $book = Book::findOrFail($id); //////////////////////////////////////
+        $loan = Loan::where($book->id)->where('user_id', Auth::id());
+        return view('confirmloan', compact('book', 'loan'));
     }
 }

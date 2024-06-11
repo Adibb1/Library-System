@@ -1,3 +1,4 @@
+<!-- delete-user-form.blade.php -->
 <section class="space-y-6">
     <header>
         <h2 class="text-lg font-medium text-gray-900 text-gray-100">
@@ -9,7 +10,7 @@
         </p>
     </header>
 
-    <x-danger-button x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')">{{ __('Delete Account') }}</x-danger-button>
+    <x-danger-button x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')" class="bg-red-600 hover:bg-red-700">{{ __('Delete Account') }}</x-danger-button>
 
     <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
         <form method="post" action="{{ route('profile.destroy') }}" class="p-6">
@@ -33,11 +34,11 @@
             </div>
 
             <div class="mt-6 flex justify-end">
-                <x-secondary-button x-on:click="$dispatch('close')">
+                <x-secondary-button x-on:click="$dispatch('close')" class="bg-gray-400 hover:bg-gray-500">
                     {{ __('Cancel') }}
                 </x-secondary-button>
 
-                <x-danger-button class="ms-3">
+                <x-danger-button class="ms-3 bg-red-600 hover:bg-red-700">
                     {{ __('Delete Account') }}
                 </x-danger-button>
             </div>

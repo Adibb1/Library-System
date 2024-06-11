@@ -24,6 +24,15 @@ use Carbon\Carbon;
                     </div>
                 </div>
             </div>
+            @if (!is_null($loan))
+            <div class="bg-[#A5A58D] overflow-hidden shadow-lg sm:rounded-lg mb-6">
+                <div class="p-6 text-white">
+                    <div class="flex flex-col gap-3">
+                        <p>You already loan this book!</p>
+                    </div>
+                </div>
+            </div>
+            @else
             <form method="POST" action="/makeloan?bookid={{$book->id}}" class="space-y-6 text-gray-900">
                 @csrf
                 <div class="flex flex-col text-gray-800">
@@ -32,6 +41,7 @@ use Carbon\Carbon;
                 </div>
                 <button class="bg-green-600 text-white py-2 px-4 rounded-lg transition-colors hover:bg-green-500">Confirm Loan & Pay</button>
             </form>
+            @endif
         </div>
     </div>
 </x-app-layout>

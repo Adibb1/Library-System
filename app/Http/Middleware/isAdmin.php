@@ -3,10 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Illuminate\Support\Facades\Auth;
-
 
 class isAdmin
 {
@@ -15,12 +14,12 @@ class isAdmin
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    
-    public function handle(Request $request, Closure $next): Response
+    public function handle($request, Closure $next)
     {
-        if (Auth::user()->isAdmin === 0) {
-            abort(403, 'Unauthorized Access');
+        if (Auth::check() && Auth::user()->isAdmin) {
+            return $next($request);
         }
-        return $next($request);
+
+        return redirect('/');
     }
 }

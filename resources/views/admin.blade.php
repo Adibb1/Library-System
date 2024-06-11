@@ -110,11 +110,44 @@
                                     <button class="text-white bg-[#6B705C] hover:bg-[#A5A58D] font-medium rounded-lg text-sm w-full px-2 py-2 text-center mt-1">Edit</button>
                                 </div>
                             </form>
-                            <form method="POST" action="/delete/{{$book->id}}">
-                                @csrf
-                                @method('DELETE')
-                                <button class="bg-red-600 py-1 px-2 rounded-lg mt-1 w-full ">delete</button>
-                            </form>
+                            <div class="flex gap-1 flex-wrap justify-center">
+                                <form method="POST" action="/delete/{{$book->id}}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="bg-red-500 hover:bg-red-600 py-1 px-2 rounded-lg mt-1 w-full ">Delete</button>
+                                </form>
+
+                                @if ($book->trending == True)
+                                <form method="POST" action="/canceltrends/{{$book->id}}">
+                                    @csrf
+                                    @method('PATCH')
+                                    <button class="bg-yellow-500 hover:bg-yellow-600 py-1 px-2 rounded-lg mt-1 w-full ">Cancel Trends</button>
+                                </form>
+                                @else
+                                <form method="POST" action="/trends/{{$book->id}}">
+                                    @csrf
+                                    @method('PATCH')
+                                    <button class="bg-yellow-500 hover:bg-yellow-600 py-1 px-2 rounded-lg mt-1 w-full ">Make Trends</button>
+                                </form>
+                                @endif
+
+                                @if ($book->recommended == True)
+                                <form method="POST" action="/cancelrecommends/{{$book->id}}">
+                                    @csrf
+                                    @method('PATCH')
+                                    <button class="bg-blue-500 hover:bg-blue-600 py-1 px-2 rounded-lg mt-1 w-full ">Cancel Recommended</button>
+                                </form>
+                                @else
+                                <form method="POST" action="/recommends/{{$book->id}}">
+                                    @csrf
+                                    @method('PATCH')
+                                    <button class="bg-blue-500 hover:bg-blue-600 py-1 px-2 rounded-lg mt-1 w-full ">Make Recommended</button>
+                                </form>
+                                @endif
+
+
+                            </div>
+
                         </div>
                         @endforeach
                         @endif
@@ -122,7 +155,7 @@
                 </div>
             </div>
 
-            <!-- Confirm Loans Section -->
+            <!-- All loans Section -->
             <div class="bg-[#6B705C] overflow-hidden shadow-lg sm:rounded-lg">
                 <div class="p-6 text-white flex flex-col items-center">
                     <button class="flex items-center w-full text-center bg-[#A5A58D] hover:bg-[#A5A58D] text-white font-bold py-2 px-4 rounded transition-all" onclick="toggleSection('confirm_loan')">VIEW ALL LOANS</button>

@@ -98,4 +98,32 @@ class AdminController extends Controller
         $message->save();
         return redirect('/admin');
     }
+    function trends($bookid)
+    {
+        $book = Book::findOrFail($bookid);
+        $book->trending = True;
+        $book->save();
+        return redirect('/admin');
+    }
+    function canceltrends($bookid)
+    {
+        $book = Book::findOrFail($bookid);
+        $book->trending = False;
+        $book->save();
+        return redirect('/admin');
+    }
+    function recommends($bookid)
+    {
+        $book = Book::findOrFail($bookid);
+        $book->recommended = True;
+        $book->save();
+        return redirect('/admin');
+    }
+    function cancelrecommends($bookid)
+    {
+        $book = Book::findOrFail($bookid);
+        $book->recommended = False;
+        $book->save();
+        return redirect('/admin');
+    }
 }
