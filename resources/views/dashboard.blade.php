@@ -18,7 +18,7 @@
                                 <img src="{{ $book->picture }}" alt="{{ $book->title }}" class="w-full h-48 object-cover aspect-square">
                                 <div class="p-4">
                                     <h3 class="text-lg sm:text-xl font-semibold text-[#3E3E3E]">{{ $book->title }}</h3>
-                                    <p class="text-[#3E3E3E]">{{ Str::limit($book->description, 40) }}</p>
+                                    <p class="text-[#3E3E3E]">{{ Str::limit($book->description, 100) }}</p>
                                     <a href="/viewloan/{{$book->id}}" class="text-[#6B705C] hover:text-[#CB997E] mt-2 block">Read More</a>
                                 </div>
                             </div>
@@ -45,7 +45,7 @@
                         <img src="{{ $book->picture }}" alt="{{ $book->title }}" class="w-full h-48 object-cover aspect-square">
                         <div class="p-4">
                             <h3 class="text-lg sm:text-xl font-semibold text-[#3E3E3E]">{{ $book->title }}</h3>
-                            <p class="text-[#3E3E3E]">{{ Str::limit($book->description, 150) }}</p>
+                            <p class="text-[#3E3E3E]">{{ Str::limit($book->description, 100) }}</p>
                             <a href="/viewloan/{{$book->id}}" class="text-[#6B705C] hover:text-[#CB997E] mt-2 block">Read More</a>
                         </div>
                     </div>
