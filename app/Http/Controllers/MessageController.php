@@ -13,7 +13,7 @@ class MessageController extends Controller
 {
     function index()
     {
-        $messages = Message::all()->reverse();
+        $messages = Message::where('user_id', Auth::id())->get()->reverse();
         return view('/message', compact('messages'));
     }
     function read_message(Request $request, $id)
