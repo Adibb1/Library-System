@@ -44,8 +44,9 @@ class BookController extends Controller
     }
     function showLoanPage($id)
     {
-        $book = Book::findOrFail($id); //////////////////////////////////////
-        $loan = Loan::where($book->id)->where('user_id', Auth::id());
+        $book = Book::findOrFail($id);
+        $loan = Loan::where('book_id', $book->id)->where('user_id', Auth::id())->first();
+        // dd($book, $loan);
         return view('confirmloan', compact('book', 'loan'));
     }
 }

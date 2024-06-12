@@ -1,10 +1,5 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-200 leading-tight">
-            {{ __('Admin') }}
-        </h2>
-    </x-slot>
-
+    <h2 class="text-5xl font-semibold mt-12 mb-6 text-center text-[#6B705C]">Admin Controllers</h2>
     <div class="py-7">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
 
@@ -74,16 +69,16 @@
             <div class="bg-[#6B705C] overflow-hidden shadow-lg sm:rounded-lg">
                 <div class="p-6 text-white flex flex-col items-center">
                     <button class="flex items-center w-full text-center bg-[#A5A58D] hover:bg-[#A5A58D] text-white font-bold py-2 px-4 rounded transition-all" onclick="toggleSection('index')">VIEW BOOKS</button>
-                    <div id="index" class="w-full max-w-7xl mx-auto h-0 opacity-0 transition-all overflow-hidden mt-4 flex flex-wrap gap-3 ">
+                    <div id="index" class="w-full max-w-7xl mx-auto h-0 opacity-0 transition-all overflow-hidden mt-4 flex flex-wrap gap-3 justify-center ">
                         @if (is_null($books))
                         <p>No books !!!!</p>
                         @else
                         @foreach ($books as $book)
-                        <div class="bg-[#B7B7A4] lg:w-[30%] md:w-[40%] w-[90%] rounded-xl flex flex-col justify-center items-center overflow-hidden shadow-sm p-6 text-white relative transition-all duration-500 cursor-pointer">
+                        <div class="bg-[#B7B7A4] lg:w-[30%] md:w-[40%] w-[90%] rounded-xl flex flex-col flex-wrap justify-center items-center overflow-hidden shadow-sm px-2 py-3 sm:p-6 text-white relative transition-all duration-500">
                             <form action="/edit/{{$book->id}}" method="post">
                                 @csrf
                                 @method('PATCH')
-                                <div class="card-summary flex flex-col justify-center ">
+                                <div class="card-summary flex justify-center">
                                     <img class="h-[100px] w-[100px] object-cover flex" src="{{$book->picture}}" alt="{{$book->picture}}">
                                 </div>
                                 <div class="w-full card-details mt-4 overflow-hidden transition-all duration-500 flex flex-col">
