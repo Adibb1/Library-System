@@ -44,7 +44,7 @@
                         <div class="mb-2">
                             <label for="Category" class="block mb-2 text-sm font-medium text-white">Category</label>
                             <select id="Category" name="Category" class="bg-[#B7B7A4] border border-gray-600 text-sm font-bold text-white rounded-lg block w-full p-2.5 focus:ring-0 focus:border-[#A5A58D]" onchange="changeTextColor(this)">
-                                <option value="" disabled>Category</option><!--Others-->
+                                <option value="" disabled selected>Category</option><!--Others-->
                                 <option value="2">Fiction</option>
                                 <option value="3">Non-Fiction</option>
                                 <option value="4">Young Adult</option>
@@ -58,7 +58,7 @@
                                 file:mr-4 file:py-2 file:px-4 file:rounded-md
                                 file:border-0 file:text-sm file:font-semibold
                                 file:bg-[#B7B7A4] file:text-white
-                                hover:file:bg-[#A5A58D]" name="picture" id="picture" />
+                                hover:file:bg-[#A5A58D]" name="picture" id="picture" required />
                         </div>
                         <button class="text-white bg-[#B7B7A4] hover:bg-[#A5A58D] font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center">Submit</button>
                     </form>

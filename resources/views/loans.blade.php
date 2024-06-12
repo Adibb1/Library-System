@@ -6,6 +6,11 @@ use Carbon\Carbon;
     <h2 class="text-5xl font-semibold mt-12 mb-6 text-center text-[#6B705C]">Your Books</h2>
     <div class="py-12 bg-[#FFE8D6]" x-data="{ open: false, loanId: null }">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-wrap gap-5">
+            @if ($loans->isEmpty())
+            <div class="w-full bg-[#A5A58D] overflow-hidden shadow-lg sm:rounded-lg flex items-center justify-between p-6 mb-4">
+                <p class="text-white">No books to read :()</p>
+            </div>
+            @endif
             @foreach ($loans as $loan)
             <div class="w-full bg-[#A5A58D] overflow-hidden shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] sm:rounded-lg transition-transform transform hover:scale-105 shadow-[25px_35px_60px_-15px_rgba(0,0,0,0.3)]">
                 <div class="p-6 text-white">
@@ -38,13 +43,13 @@ use Carbon\Carbon;
                             <div class="w-full sm:w-2/5 min-h-[100px] rounded bg-[#CB997E]/50 mt-3 sm:mt-0 flex flex-col items-center p-2">
                                 @if (!is_null($loan->testimony))
                                 <h3 class="text-lg">Your Testimony:</h3>
-                                <form method="post" action="/edit_testimony/{{$loan->testimony->id}}">
+                                <form class="w-[90%] flex justify-center flex-col" method="post" action="/edit_testimony/{{$loan->testimony->id}}">
                                     @csrf
                                     @method('PATCH')
                                     <textarea required name="text" class="text-black focus:border-0 min-h-[100px] border-2 rounded-lg mt-2 p-2 border-[#CB997E] bg-[#FFE8D6]">{{$loan->testimony->text}}</textarea>
                                     <div class="mt-2 flex space-x-2">
-                                        <button class="py-1 px-2 rounded bg-yellow-500 hover:bg-yellow-500/50 transition duration-200">Edit</button>
-                                        <a href="/delete_testimony/{{$loan->testimony->id}}" class="py-1 px-2 rounded bg-red-500 hover:bg-red-500/50 hover:no-underline hover:text-black transition duration-200">Delete</a>
+                                        <button class="py-1 px-2 rounded bg-yellow-500 hover:bg-yellow-500/50 hover:shadow-lg transition duration-200">Edit</button>
+                                        <a href="/delete_testimony/{{$loan->testimony->id}}" class="py-1 px-2 rounded bg-red-500 hover:bg-red-500/50  hover:shadow-lg  hover:no-underline hover:text-black transition duration-200">Delete</a>
                                     </div>
                                 </form>
                                 @else

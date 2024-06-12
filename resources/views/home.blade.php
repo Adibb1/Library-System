@@ -18,7 +18,7 @@
             <div class="flex flex-wrap justify-center gap-6 mt-8">
                 @foreach ($books as $book)
                 <div class="bg-[#B7B7A4] lg:w-[30%] md:w-[40%] w-[80%] h-[230px] rounded-xl flex flex-col items-center overflow-hidden shadow-[3px_3px_15px_5px_rgba(0,0,0,0.3)] p-6 text-[#3E3E3E] relative transition-all duration-500 cursor-pointer card-height" onclick="toggleCardDetails(this)">
-                    <div class="card-summary text-center">
+                    <div class="card-summary text-center flex flex-col justify-center items-center">
                         <img class="h-[100px] w-[100px] object-cover mb-4 rounded-lg" src="{{$book->picture}}" alt="{{$book->title}}">
                         <h4 class="font-semibold mb-2">{{$book->title}}</h4>
                         <p class="text-sm text-[#3E3E3E]">- {{$book->author}}</p>
@@ -26,7 +26,7 @@
                     <div class="w-full card-details mt-4 overflow-hidden transition-all duration-500 hidden flex flex-col">
                         <div class="border-2 rounded-lg mt-2 p-3 border-[#CB997E] bg-[#FFE8D6]">
                             <p class="font-semibold text-[#6B705C]">Description:</p>
-                            <p class="mt-2 text-[#3E3E3E]">{{$book->description}}</p>
+                            <p class="mt-2 text-[#3E3E3E]">{{Str::limit($book->description, 50)}}</p>
                         </div>
                         <div class="border-2 rounded-lg mt-2 p-3 border-[#CB997E] bg-[#FFE8D6]">
                             <p class="font-semibold text-[#6B705C]">Language:</p>
@@ -59,18 +59,18 @@
 
         if (openCard === details) {
             details.classList.add('hidden');
-            card.classList.remove('h-[630px]');
+            card.classList.remove('h-[650px]');
             card.classList.add('h-[230px]');
 
             openCard = null;
         } else {
             if (openCard !== null) {
                 openCard.classList.add('hidden');
-                openCard.parentElement.classList.remove('h-[630px]');
+                openCard.parentElement.classList.remove('h-[650px]');
                 openCard.parentElement.classList.add('h-[230px]');
             }
             details.classList.remove('hidden');
-            card.classList.add('h-[630px]');
+            card.classList.add('h-[650px]');
             card.classList.remove('h-[230px]');
 
             openCard = details;

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Loan;
+use App\Models\Testimony;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
@@ -46,7 +47,7 @@ class BookController extends Controller
     {
         $book = Book::findOrFail($id);
         $loan = Loan::where('book_id', $book->id)->where('user_id', Auth::id())->first();
-        // dd($book, $loan);
-        return view('confirmloan', compact('book', 'loan'));
+        $testimonies = Testimony::where('book_id', $book->id)->get();
+        return view('confirmloan', compact('book', 'loan', 'testimonies'));
     }
 }

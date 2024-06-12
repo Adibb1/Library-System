@@ -16,6 +16,7 @@ class TestiController extends Controller
 
         $testimony->user_id = Auth::id();
         $testimony->loan_id = $loan_id;
+        $testimony->book_id = $loan->book_id;
         $testimony->text = $request->text;
         $testimony->created_at = now();
 
