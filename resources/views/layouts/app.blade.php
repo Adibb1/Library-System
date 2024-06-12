@@ -42,6 +42,13 @@
             {{ $slot }}
         </main>
     </div>
+
+    <!-- Footer Section -->
+    <footer class="bg-[#6B705C] text-white py-4">
+        <div class="container mx-auto text-center">
+            <p>&copy; {{ date('Y') }} Adib Library. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 
 </html>
