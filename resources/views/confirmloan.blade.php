@@ -47,8 +47,8 @@ use Carbon\Carbon;
                         @foreach ($testimonies as $testimony)
                         <div class="bg-[#FFE8D6] border-2 border-[#CB997E] w-[90%] rounded-xl flex gap-3 justify-center items-center overflow-hidden shadow-xl p-6 text-white relative transition-all duration-500">
                             <div class="card-summary flex flex-col justify-center ">
-                                <img class="h-[70px] w-[70px] object-cover flex rounded-full" src="{{$testimony->user->profile_picture}}" alt="{{$loan->book->picture}}">
-                                <p class="text-black">{{$testimony->user->name}}</p>
+                                <img class="h-[70px] w-[70px] object-cover flex rounded-full" src="{{$testimony->user->profile_picture}}" alt="pfp">
+                                <p class="text-black text-center">{{$testimony->user->name}}</p>
                             </div>
                             <div class="w-full card-details overflow-hidden transition-all duration-500 flex flex-col">
                                 <p class="text-black">{{ Carbon::parse($testimony->created_at)->format('j F Y') }}</p>
