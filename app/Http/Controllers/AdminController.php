@@ -10,6 +10,8 @@ use App\Models\Category;
 use Carbon\Language;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 
 class AdminController extends Controller
 {
@@ -124,6 +126,32 @@ class AdminController extends Controller
         $book = Book::findOrFail($bookid);
         $book->recommended = False;
         $book->save();
+        return redirect('/admin');
+    }
+    public function edit_picture(Request $request, $id): RedirectResponse
+    {
+        $book = Book::findOrFail($id);
+
+        $request->validate([
+            'picture' => 'required|image|max:10240'
+        ]);
+
+        if ($request->hasFile('picture')) {
+            $file = $request->file('picture');
+            $file_name = time() . '_' . $file->getClientOriginalName();
+            $file_path = $file->storeAs('public/profile_pictures', $file_name);
+            $asset_url = Storage::url($file_path);
+
+            //delete old picture
+            if ($book->profile_picture) {
+                $old_file_path = str_replace('/storage', 'public', $book->picture);
+                Storage::delete($old_file_path);
+            }
+
+            $book->picture = $asset_url;
+            $book->save();
+        }
+
         return redirect('/admin');
     }
 }

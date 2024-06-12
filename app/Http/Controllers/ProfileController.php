@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -57,5 +58,29 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    /**
+     * Update the user's profile picture.
+     */
+    function update_pfp(Request $request): RedirectResponse
+    {
+        $user = User::findOrFail(Auth::id());
+
+        $request->validate([
+            'picture' => 'required|image|max:10240'
+        ]);
+
+        if ($request->hasFile('picture')) {
+            $file = $request->file('picture');
+            $file_name = time() . '_' . $file->getClientOriginalName();
+            $file_path = $file->storeAs('public/profile_pictures', $file_name);
+            $asset_url = Storage::url($file_path);
+
+            $user->profile_picture = $asset_url;
+            $user->save();
+        }
+
+        return redirect()->route('profile.edit');
     }
 }

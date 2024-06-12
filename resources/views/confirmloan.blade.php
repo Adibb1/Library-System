@@ -14,22 +14,22 @@ use Carbon\Carbon;
                     </div>
 
                     <div class="flex flex-col gap-3 mt-2">
-                        <div class="border-2 rounded-lg mt-1 p-3 border-[#CB997E] bg-[#DDBEA9]">
+                        <div class="border-2 rounded-lg mt-1 p-3 border-[#CB997E] bg-[#FFE8D6] shadow-xl">
                             <p class="text-black">Author: {{$book->author}}</p>
                         </div>
-                        <div class="border-2 rounded-lg mt-1 p-3 border-[#CB997E] bg-[#DDBEA9]">
+                        <div class="border-2 rounded-lg mt-1 p-3 border-[#CB997E] bg-[#FFE8D6] shadow-xl">
                             <p class="text-black">Description: {{$book->description}}</p>
                         </div>
-                        <div class="border-2 rounded-lg mt-1 p-3 border-[#CB997E] bg-[#DDBEA9]">
+                        <div class="border-2 rounded-lg mt-1 p-3 border-[#CB997E] bg-[#FFE8D6] shadow-xl">
                             <p class="text-black">Book Number (ISBN): {{$book->ISBN}}</p>
                         </div>
-                        <div class="border-2 rounded-lg mt-1 p-3 border-[#CB997E] bg-[#DDBEA9]">
+                        <div class="border-2 rounded-lg mt-1 p-3 border-[#CB997E] bg-[#FFE8D6] shadow-xl">
                             <p class="text-black">Category: {{$book->category->name}}</p>
                         </div>
-                        <div class="border-2 rounded-lg mt-1 p-3 border-[#CB997E] bg-[#DDBEA9]">
+                        <div class="border-2 rounded-lg mt-1 p-3 border-[#CB997E] bg-[#FFE8D6] shadow-xl">
                             <p class="text-black">Language: {{$book->language->name}}</p>
                         </div>
-                        <div class="border-2 rounded-lg mt-1 p-3 border-[#CB997E] bg-[#DDBEA9]">
+                        <div class="border-2 rounded-lg mt-1 p-3 border-[#CB997E] bg-[#FFE8D6] shadow-xl">
                             <p class="text-black">Price: {{$book->price}}</p>
                         </div>
                     </div>
@@ -45,7 +45,7 @@ use Carbon\Carbon;
                     </div>
                 </div>
                 @else
-                <form method="POST" action="/makeloan?bookid={{$book->id}}" class="space-y-6 text-gray-900 w-[80%] sm:w-full">
+                <form method="POST" action="/makeloan?bookid={{$book->id}}" class="flex flex-col gap-3 text-gray-900 w-[80%] sm:w-full">
                     @csrf
                     <div class="flex flex-col text-gray-800">
                         <label class="mb-2" for="name">Loaner Name</label>

@@ -19,7 +19,7 @@ class LoanController extends Controller
         $book = Book::findOrFail($_GET['bookid']);
 
         $messages->user_id = Auth::id();
-        $messages->text = 'Thanks for renting our books !';
+        $messages->text = "Thanks {$request->name} for renting {$book->title}  !!!!";
         $messages->date = now();
 
         $loans->name = $request->name;

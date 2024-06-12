@@ -42,11 +42,13 @@ Route::get('/admin', function () {
     return view('admin');
 })->middleware(['auth', 'verified', isAdmin::class])->name('admin');
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::patch('/profile/update-pfp', [ProfileController::class, 'update_pfp'])->name('profile.update_pfp');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
 ////////////////////////////////////////////////////////////////////////
 
 //DASHBOARD VARIABLES
@@ -61,6 +63,7 @@ Route::patch('/trends/{id}', [AdminController::class, 'trends']);
 Route::patch('/canceltrends/{id}', [AdminController::class, 'canceltrends']);
 Route::patch('/recommends/{book}', [AdminController::class, 'recommends']);
 Route::patch('/cancelrecommends/{book}', [AdminController::class, 'cancelrecommends']);
+Route::patch('/edit_picture/{id}', [AdminController::class, 'edit_picture']);
 
 //BOOK
 Route::get('/home', [BookController::class, 'index'])->middleware(['auth', 'verified'])->name('home');

@@ -26,11 +26,11 @@
                             <input type="text" name="Description" class="bg-[#B7B7A4] border border-gray-600 placeholder-white text-sm font-bold text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Description" required />
                         </div>
                         <div class="mb-2">
-                            <label for="Description" class="block mb-2 text-sm font-medium text-white">Price</label>
+                            <label for="Price" class="block mb-2 text-sm font-medium text-white">Price</label>
                             <input type="text" name="Price" class="bg-[#B7B7A4] border border-gray-600 placeholder-white text-sm font-bold text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Price" required />
                         </div>
                         <div class="mb-2">
-                            <label for="Description" class="block mb-2 text-sm font-medium text-white">Language</label>
+                            <label for="Language" class="block mb-2 text-sm font-medium text-white">Language</label>
                             <select id="Language" name="Language" class="bg-[#B7B7A4] border border-gray-600 text-sm font-bold text-white rounded-lg block w-full p-2.5 focus:ring-0 focus:border-[#A5A58D]" onchange="changeTextColor(this)">
                                 <option value="" disabled selected>Language</option>
                                 <option value="1">English</option>
@@ -55,32 +55,39 @@
                         <div class="mb-2">
                             <label class="block mb-2 text-sm font-medium text-white" for="picture">Picture</label>
                             <input type="file" class="block w-full text-sm text-white
-        file:mr-4 file:py-2 file:px-4 file:rounded-md
-        file:border-0 file:text-sm file:font-semibold
-        file:bg-[#B7B7A4] file:text-white
-        hover:file:bg-[#A5A58D]" name="picture" id="picture" />
+                                file:mr-4 file:py-2 file:px-4 file:rounded-md
+                                file:border-0 file:text-sm file:font-semibold
+                                file:bg-[#B7B7A4] file:text-white
+                                hover:file:bg-[#A5A58D]" name="picture" id="picture" />
                         </div>
                         <button class="text-white bg-[#B7B7A4] hover:bg-[#A5A58D] font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center">Submit</button>
                     </form>
                 </div>
             </div>
 
-            <!-- View Books Section -->
+            <!-- View Edit Books Section -->
             <div class="bg-[#6B705C] overflow-hidden shadow-lg sm:rounded-lg">
                 <div class="p-6 text-white flex flex-col items-center">
-                    <button class="flex items-center w-full text-center bg-[#A5A58D] hover:bg-[#A5A58D] text-white font-bold py-2 px-4 rounded transition-all" onclick="toggleSection('index')">VIEW BOOKS</button>
-                    <div id="index" class="w-full max-w-7xl mx-auto h-0 opacity-0 transition-all overflow-hidden mt-4 flex flex-wrap gap-3 justify-center ">
+                    <button class="flex items-center w-full text-center bg-[#A5A58D] hover:bg-[#A5A58D] text-white font-bold py-2 px-4 rounded transition-all" onclick="toggleSection('index')">EDIT BOOKS</button>
+                    <div id="index" class="w-full max-w-7xl mx-auto h-0 opacity-0 transition-all overflow-hidden mt-4 flex flex-wrap gap-3 justify-center">
                         @if (is_null($books))
                         <p>No books !!!!</p>
                         @else
                         @foreach ($books as $book)
                         <div class="bg-[#B7B7A4] lg:w-[30%] md:w-[40%] w-[90%] rounded-xl flex flex-col flex-wrap justify-center items-center overflow-hidden shadow-sm px-2 py-3 sm:p-6 text-white relative transition-all duration-500">
+                            <div class="flex flex-col justify-start items-start mt-4 sm:mt-0 sm:items-center w-full md:w-1/2">
+                                <img id="book-picture-{{$book->id}}" class="h-[150px] w-[150px] mb-4 rounded-xl object-cover cursor-pointer" src="{{$book->picture}}" alt="Book Picture">
+                                <form id="update-picture-book-{{$book->id}}" action="/edit_picture/{{$book->id}}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('PATCH')
+                                    <input name="picture" type="file" class="hidden" id="picture-{{$book->id}}" required />
+                                    <button class="text-black shadow-lg border bg-[#DDBEA9] hover:bg-[#CB997E] font-medium rounded-lg text-sm w-full px-2 py-2 text-center mt-1">{{ __('Update picture') }}</button>
+                                </form>
+                            </div>
                             <form action="/edit/{{$book->id}}" method="post">
                                 @csrf
                                 @method('PATCH')
-                                <div class="card-summary flex justify-center">
-                                    <img class="h-[100px] w-[100px] object-cover flex" src="{{$book->picture}}" alt="{{$book->picture}}">
-                                </div>
+
                                 <div class="w-full card-details mt-4 overflow-hidden transition-all duration-500 flex flex-col">
                                     <div class="border-2 rounded-lg mt-2 p-3 border-[#6B705C]">
                                         <p class="font-semibold">Title:</p>
@@ -102,27 +109,27 @@
                                         <p class="font-semibold">Price:</p>
                                         <input class="text-black" type="text" name="Price" value="{{$book->price}}">
                                     </div>
-                                    <button class="text-white bg-[#6B705C] hover:bg-[#A5A58D] font-medium rounded-lg text-sm w-full px-2 py-2 text-center mt-1">Edit</button>
+                                    <button class="text-white shadow-lg border bg-green-600 hover:bg-green-700 font-medium rounded-lg text-sm w-full px-2 py-2 text-center mt-1">Edit</button>
                                 </div>
                             </form>
                             <div class="flex gap-1 flex-wrap justify-center">
                                 <form method="POST" action="/delete/{{$book->id}}">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="bg-red-500 hover:bg-red-600 py-1 px-2 rounded-lg mt-1 w-full ">Delete</button>
+                                    <button class="bg-red-500 hover:bg-red-600 py-1 px-2 rounded-lg mt-1 w-full shadow-lg border ">Delete</button>
                                 </form>
 
                                 @if ($book->trending == True)
                                 <form method="POST" action="/canceltrends/{{$book->id}}">
                                     @csrf
                                     @method('PATCH')
-                                    <button class="bg-yellow-500 hover:bg-yellow-600 py-1 px-2 rounded-lg mt-1 w-full ">Cancel Trends</button>
+                                    <button class="bg-yellow-500 hover:bg-yellow-600 py-1 px-2 rounded-lg mt-1 w-full shadow-lg border ">Cancel Trends</button>
                                 </form>
                                 @else
                                 <form method="POST" action="/trends/{{$book->id}}">
                                     @csrf
                                     @method('PATCH')
-                                    <button class="bg-yellow-500 hover:bg-yellow-600 py-1 px-2 rounded-lg mt-1 w-full ">Make Trends</button>
+                                    <button class="bg-yellow-500 hover:bg-yellow-600 py-1 px-2 rounded-lg mt-1 w-full shadow-lg border ">Make Trends</button>
                                 </form>
                                 @endif
 
@@ -130,19 +137,16 @@
                                 <form method="POST" action="/cancelrecommends/{{$book->id}}">
                                     @csrf
                                     @method('PATCH')
-                                    <button class="bg-blue-500 hover:bg-blue-600 py-1 px-2 rounded-lg mt-1 w-full ">Cancel Recommended</button>
+                                    <button class="bg-blue-500 hover:bg-blue-600 py-1 px-2 rounded-lg mt-1 w-full shadow-lg border ">Cancel Recommended</button>
                                 </form>
                                 @else
                                 <form method="POST" action="/recommends/{{$book->id}}">
                                     @csrf
                                     @method('PATCH')
-                                    <button class="bg-blue-500 hover:bg-blue-600 py-1 px-2 rounded-lg mt-1 w-full ">Make Recommended</button>
+                                    <button class="bg-blue-500 hover:bg-blue-600 py-1 px-2 rounded-lg mt-1 w-full shadow-lg border ">Make Recommended</button>
                                 </form>
                                 @endif
-
-
                             </div>
-
                         </div>
                         @endforeach
                         @endif
@@ -183,7 +187,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -208,5 +211,26 @@
                 selectElement.classList.add('text-white');
             }
         }
+
+        // Add event listeners to all book picture and file input elements
+        document.addEventListener('DOMContentLoaded', function() {
+            @foreach($books as $book)
+            document.getElementById('book-picture-{{$book->id}}').addEventListener('click', function() {
+                document.getElementById('picture-{{$book->id}}').click();
+            });
+
+            document.getElementById('picture-{{$book->id}}').addEventListener('change', function(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        document.getElementById('book-picture-{{$book->id}}').src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+            @endforeach
+        });
     </script>
+
 </x-app-layout>
