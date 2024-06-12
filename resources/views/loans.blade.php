@@ -19,7 +19,7 @@ use Carbon\Carbon;
                     <div class="bg-[#DDBEA9] p-4 rounded-lg flex flex-col mt-4 space-y-4">
                         <div class="flex flex-col sm:flex-row items-center gap-2">
                             <div class="text-black space-y-2 flex flex-col sm:flex-row gap-5 w-full flex items-center">
-                                <img class="h-[200px] w-[200px] object-cover rounded-md" src="{{$loan->book->picture}}" alt="Book Image">
+                                <img class="h-[280px] w-[190px] object-cover rounded-md" src="{{$loan->book->picture}}" alt="Book Image">
                                 <div class="w-full sm:w-3/5 flex flex-col">
                                     <p class="font-bold text-lg">Title: {{$loan->book->title}}</p>
                                     <div class="border-2 rounded-lg mt-2 p-2 border-[#CB997E] bg-[#FFE8D6]">
@@ -40,9 +40,9 @@ use Carbon\Carbon;
                                     <a class="text-white text-center py-1 px-2 mt-2 inline-block rounded bg-[#6B705C] hover:text-white/70 hover:bg-[#B7B7A4] transition duration-200" href="#">Link to download PDF</a>
                                 </div>
                             </div>
-                            <div class="w-full sm:w-2/5 min-h-[100px] rounded bg-[#CB997E]/50 mt-3 sm:mt-0 flex flex-col items-center p-2">
+                            <div class="w-full sm:w-2/5 min-h-[100px] rounded-lg bg-[#FFE8D6]/70 mt-3 sm:mt-0 flex flex-col justify-center items-center p-2">
                                 @if (!is_null($loan->testimony))
-                                <h3 class="text-lg">Your Testimony:</h3>
+                                <h3 class="text-lg text-black">Your Testimony:</h3>
                                 <form class="w-[90%] flex justify-center flex-col" method="post" action="/edit_testimony/{{$loan->testimony->id}}">
                                     @csrf
                                     @method('PATCH')
