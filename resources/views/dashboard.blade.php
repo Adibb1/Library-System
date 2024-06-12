@@ -41,7 +41,7 @@
                 <h2 class="text-3xl sm:text-4xl md:text-6xl font-semibold mb-6 text-center text-[#6B705C]">Recommended Books</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     @foreach ($recommendedBooks as $book)
-                    <div class="bg-[#DDBEA9] shadow-md rounded-lg overflow-hidden transition-transform duration-300 transform hover:scale-105">
+                    <div class="bg-[#DDBEA9] shadow-lg rounded-lg overflow-hidden transition-transform duration-300 transform hover:scale-105">
                         <img src="{{ $book->picture }}" alt="{{ $book->title }}" class="w-full h-48 object-cover aspect-square">
                         <div class="p-4">
                             <h3 class="text-lg sm:text-xl font-semibold text-[#3E3E3E]">{{ $book->title }}</h3>

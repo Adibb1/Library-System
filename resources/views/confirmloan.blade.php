@@ -15,23 +15,29 @@ use Carbon\Carbon;
                     </div>
 
                     <div class="flex flex-col gap-3 mt-2">
-                        <div class="border-2 rounded-lg mt-1 p-3 border-[#CB997E] bg-[#FFE8D6] shadow-xl">
-                            <p class="text-black">Author: {{$book->author}}</p>
+                        <p class="text-black font-bold pl-2">Author: </p>
+                        <div class="border-2 rounded-lg p-3 border-[#CB997E] bg-[#FFE8D6] shadow-xl">
+                            <p class="text-black">{{$book->author}}</p>
                         </div>
-                        <div class="border-2 rounded-lg mt-1 p-3 border-[#CB997E] bg-[#FFE8D6] shadow-xl">
-                            <p class="text-black">Description: {{$book->description}}</p>
+                        <p class="text-black font-bold pl-2">Description: </p>
+                        <div class="border-2 rounded-lg p-3 border-[#CB997E] bg-[#FFE8D6] shadow-xl">
+                            <p class="text-black">{{$book->description}}</p>
                         </div>
-                        <div class="border-2 rounded-lg mt-1 p-3 border-[#CB997E] bg-[#FFE8D6] shadow-xl">
-                            <p class="text-black">Book Number (ISBN): {{$book->ISBN}}</p>
+                        <p class="text-black font-bold pl-2">Book Number (ISBN): </p>
+                        <div class="border-2 rounded-lg p-3 border-[#CB997E] bg-[#FFE8D6] shadow-xl">
+                            <p class="text-black">{{$book->ISBN}}</p>
                         </div>
-                        <div class="border-2 rounded-lg mt-1 p-3 border-[#CB997E] bg-[#FFE8D6] shadow-xl">
-                            <p class="text-black">Category: {{$book->category->name}}</p>
+                        <p class="text-black font-bold pl-2">Category: </p>
+                        <div class="border-2 rounded-lg p-3 border-[#CB997E] bg-[#FFE8D6] shadow-xl">
+                            <p class="text-black">{{$book->category->name}}</p>
                         </div>
-                        <div class="border-2 rounded-lg mt-1 p-3 border-[#CB997E] bg-[#FFE8D6] shadow-xl">
-                            <p class="text-black">Language: {{$book->language->name}}</p>
+                        <p class="text-black font-bold pl-2">Language: </p>
+                        <div class="border-2 rounded-lg p-3 border-[#CB997E] bg-[#FFE8D6] shadow-xl">
+                            <p class="text-black">{{$book->language->name}}</p>
                         </div>
-                        <div class="border-2 rounded-lg mt-1 p-3 border-[#CB997E] bg-[#FFE8D6] shadow-xl">
-                            <p class="text-black">Price: {{$book->price}}</p>
+                        <p class="text-black font-bold pl-2">Price: </p>
+                        <div class="border-2 rounded-lg p-3 border-[#CB997E] bg-[#FFE8D6] shadow-xl">
+                            <p class="text-black">{{$book->price}}</p>
                         </div>
                     </div>
                 </div>
