@@ -75,7 +75,7 @@
                         @else
                         @foreach ($books as $book)
                         <div class="bg-[#B7B7A4] lg:w-[30%] md:w-[40%] w-[90%] rounded-xl flex flex-col flex-wrap justify-center items-center overflow-hidden shadow-sm px-2 py-3 sm:p-6 text-white relative transition-all duration-500">
-                            <div class="flex flex-col justify-start items-start mt-4 sm:mt-0 sm:items-center w-full md:w-1/2">
+                            <div class="flex flex-col justify-start items-start mt-4 sm:mt-0 items-center w-full md:w-1/2">
                                 <img id="book-picture-{{$book->id}}" class="h-[150px] w-[150px] mb-4 rounded-xl object-cover cursor-pointer" src="{{$book->picture}}" alt="Book Picture">
                                 <form id="update-picture-book-{{$book->id}}" action="/edit_picture/{{$book->id}}" method="post" enctype="multipart/form-data">
                                     @csrf
